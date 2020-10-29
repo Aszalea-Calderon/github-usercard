@@ -1,10 +1,22 @@
+import axios from "axios";
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
 
+axios
+  .get("https://api.github.com/users/Aszalea-Calderon")
+  .then((futureData) => {
+    console.log(futureData);
+  })
+  .catch((theBadStuff) => {
+    console.log(theBadStuff);
+  });
+
 /*
+
+
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
     data in order to use it to build your component function
@@ -49,6 +61,11 @@ const followersArray = [];
       </div>
     </div>
 */
+let postMaker = (post) => {
+  const card = document.querySelector(".card");
+  const img = document.createElement("img");
+  const h3 = document.createElement("h3");
+};
 
 /*
   List of LS Instructors Github username's:
