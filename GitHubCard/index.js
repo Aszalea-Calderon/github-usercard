@@ -4,16 +4,51 @@ import axios from "axios";
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+const theCards = document.querySelector(".cards");
+// const followersArray = [
+//   "Aszalea-Calderon",
+//   "BrianReisman",
+//   "jenkrame21",
+//   "jaypdl",
+//   "sam-lalli",
+//   "code-dependent",
+//   "avawing",
+// ];
 
+// followersArray.forEach((person) => {
+//Personal Call
 axios
-  .get("https://api.github.com/users/Aszalea-Calderon")
-  .then((futureData) => {
-    console.log(futureData);
+  .get(`https://api.github.com/users/Aszalea-Calderon`)
+  .then((res) => {
+    const data = res.data;
+    // const myPost = postMaker(allData);
+    // entryPoint.appendChild(myPost);
+    postMaker(data);
+    debugger;
   })
   .catch((theBadStuff) => {
-    console.log(theBadStuff);
+    console.log("theBadStuff", theBadStuff);
+    debugger;
   });
+// });
 
+//Followers Call
+axios
+  .get(`https://api.github.com/users/Aszalea-Calderon/followers`)
+  .then((res) => {
+    const followerData = res.data;
+    followerData.forEach((data) => {
+      const followerContainer = postMaker(data);
+      theCards.append(followerContainer);
+    });
+    // const myPost = postMaker(allData);
+    // entryPoint.appendChild(myPost);
+    debugger;
+  })
+  .catch((theBadStuff) => {
+    console.log("theBadStuff", theBadStuff);
+    debugger;
+  });
 /*
 
 
@@ -40,14 +75,15 @@ axios
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+//looping inside, this is different, the forEach is going to encpsualte the aiox
+//forEach what? for eachPerson. each of those people get this. this needs to have the extention. Don't need to do a second
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
     Using DOM methods and properties, create and return the following markup:
 
-    <div class="card">
-      <img src={image url of user} />
+    <div class="card">c
+      <img src={image url of user} />x
       <div class="card-info">
         <h3 class="name">{users name}</h3>
         <p class="username">{users user name}</p>
@@ -60,13 +96,73 @@ const followersArray = [];
         <p>Bio: {users bio}</p>
       </div>
     </div>
-*/
-let postMaker = (post) => {
-  const card = document.querySelector(".card");
-  const img = document.createElement("img");
-  const h3 = document.createElement("h3");
-};
 
+    user profile is the pr
+    uerGit hub is the a 
+
+    THIS IS CALLED A COMPONENT 
+*/
+function postMaker(post) {
+  const card = document.createElement("div");
+  const img = document.createElement("img");
+  const cardInfoDiv = document.createElement("div");
+  const h3 = document.createElement("h3");
+  const usernameP = document.createElement("p");
+  const locationP = document.createElement("p");
+  const profileP = document.createElement("a");
+  const follow1 = document.createElement("p");
+  const follow2 = document.createElement("p");
+  const bioP = document.createElement("p");
+
+  //classes
+  card.classList.add("card");
+  cardInfoDiv.classList.add("card-info");
+  h3.classList.add("name");
+  usernameP.classList.add("username");
+
+  //Sources Linked
+
+  //Appending
+  card.append(img);
+  card.append(cardInfoDiv);
+  cardInfoDiv.append(h3);
+  cardInfoDiv.append(usernameP);
+  cardInfoDiv.append(locationP);
+  cardInfoDiv.append(profileP);
+  cardInfoDiv.append(follow1);
+  cardInfoDiv.append(follow2);
+  cardInfoDiv.append(bioP);
+
+  //textContent
+  img.src = post.avatar_url;
+  // profileP.src = post.html_url;
+
+  h3.textContent = post.login;
+  usernameP.textContent = `Username: ${post.name}`; /*data.name?*/
+  locationP.textContent = `Location: ${post.location}`;
+  profileP.src = `Profile: ${post.html_url}`;
+  follow1.textContent = `Followers: ${post.followers}`;
+  follow2.textContent = `Following: ${post.following}`;
+  bioP.textContent = `Bio: ${post.bio}`;
+
+  //return dat
+  return theCards.appendChild(card);
+}
+
+// <div class="card">c
+//   <img src={image url of user} />x
+//   <div class="card-info">
+//     <h3 class="name">{users name}</h3>
+//     <p class="username">{users user name}</p>
+//     <p>Location: {users location}</p>
+//     <p>Profile:
+//       <a href={address to users github page}>{address to users github page}</a>
+//     </p>
+//     <p>Followers: {users followers count}</p>
+//     <p>Following: {users following count}</p>
+//     <p>Bio: {users bio}</p>
+//   </div>
+// </div>
 /*
   List of LS Instructors Github username's:
     tetondan
