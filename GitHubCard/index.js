@@ -5,15 +5,6 @@ import axios from "axios";
     https://api.github.com/users/<your name>
 */
 const theCards = document.querySelector(".cards");
-// const followersArray = [
-//   "Aszalea-Calderon",
-//   "BrianReisman",
-//   "jenkrame21",
-//   "jaypdl",
-//   "sam-lalli",
-//   "code-dependent",
-//   "avawing",
-// ];
 
 // followersArray.forEach((person) => {
 //Personal Call
@@ -33,6 +24,17 @@ axios
 // });
 
 //Followers Call
+//TODO-- This is not currently being used. We need to loop the forEach over the axios call below or find a way to add the followerArray api addresses for each so they can have the info defined
+//TODO-- We also need to get the profile link workings
+const followersArray = [
+  "BrianReisman",
+  "jenkrame21",
+  "jaypdl",
+  "sam-lalli",
+  "code-dependent",
+  "avawing",
+];
+
 axios
   .get(`https://api.github.com/users/Aszalea-Calderon/followers`)
   .then((res) => {
@@ -140,7 +142,7 @@ function postMaker(post) {
   h3.textContent = post.login;
   usernameP.textContent = `Username: ${post.name}`; /*data.name?*/
   locationP.textContent = `Location: ${post.location}`;
-  profileP.src = `Profile: ${post.html_url}`;
+  // profileP.src = `Profile: ${post.html_url}`;
   follow1.textContent = `Followers: ${post.followers}`;
   follow2.textContent = `Following: ${post.following}`;
   bioP.textContent = `Bio: ${post.bio}`;
