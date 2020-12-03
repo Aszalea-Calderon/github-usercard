@@ -12,19 +12,15 @@ axios
   .get(`https://api.github.com/users/Aszalea-Calderon`)
   .then((res) => {
     const data = res.data;
-    // const myPost = postMaker(allData);
-    // entryPoint.appendChild(myPost);
     postMaker(data);
-    debugger;
   })
   .catch((theBadStuff) => {
     console.log("theBadStuff", theBadStuff);
-    debugger;
   });
 // });
 
 //Followers Call
-//TODO-- This is not currently being used. We need to loop the forEach over the axios call below or find a way to add the followerArray api addresses for each so they can have the info defined
+
 //TODO-- We also need to get the profile link workings
 const followersArray = [
   "BrianReisman",
@@ -36,7 +32,7 @@ const followersArray = [
 ];
 
 // axios
-//   .get("https://api.github.com/users/Aszalea-Calderon/followers")
+//   .get("https://api.github.com/users/Aszalea-Calderon/followers") //This did not populate the data we needed
 //   .then((res) => {
 //     res.data.forEach((post) => {
 //       const data = res.data;
@@ -49,23 +45,18 @@ const followersArray = [
 //     console.log("theBadStuff", theBadStuff);
 //     debugger;
 //   });
+followersArray.forEach((item) => {
+  axios
+    .get(`https://api.github.com/users/${item}`)
+    .then((res) => {
+      const followerData = postMaker(res.data);
+      theCards.append(followerData);
+    })
 
-axios
-  .get(`https://api.github.com/users/Aszalea-Calderon/followers`)
-  .then((res) => {
-    const followerData = res.data;
-    followerData.forEach((data) => {
-      const followerContainer = postMaker(data);
-      theCards.append(followerContainer);
+    .catch((theBadStuff) => {
+      console.log("theBadStuff", theBadStuff);
     });
-    // const myPost = postMaker(allData);
-    // entryPoint.appendChild(myPost);
-    debugger;
-  })
-  .catch((theBadStuff) => {
-    console.log("theBadStuff", theBadStuff);
-    debugger;
-  });
+});
 /*
 
 
