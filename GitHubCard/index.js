@@ -35,6 +35,21 @@ const followersArray = [
   "avawing",
 ];
 
+// axios
+//   .get("https://api.github.com/users/Aszalea-Calderon/followers")
+//   .then((res) => {
+//     res.data.forEach((post) => {
+//       const data = res.data;
+//       // const myPost = postMaker(allData);
+//       // entryPoint.appendChild(myPost);
+//       postMaker(data);
+//     });
+//   })
+//   .catch((theBadStuff) => {
+//     console.log("theBadStuff", theBadStuff);
+//     debugger;
+//   });
+
 axios
   .get(`https://api.github.com/users/Aszalea-Calderon/followers`)
   .then((res) => {
