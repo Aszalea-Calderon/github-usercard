@@ -32,7 +32,7 @@ const followersArray = [
 ];
 
 // axios
-//   .get("https://api.github.com/users/Aszalea-Calderon/followers") //This did not populate the data we needed
+//   .get("https://api.github.com/users/Aszalea-Calderon/followers") //This did not populate the data we needed. it did go through all the followers I had but not their data
 //   .then((res) => {
 //     res.data.forEach((post) => {
 //       const data = res.data;
@@ -179,3 +179,4 @@ function postMaker(post) {
     luishrd
     bigknell
 */
+//
